@@ -35,7 +35,9 @@ import java.util.Set;
 @Rule(key = InvalidOperationIdName.CHECK_KEY)
 public class InvalidOperationIdName extends OpenApiCheck {
         public static final String CHECK_KEY = "InvalidOperationIdName";
-        private static final String FIND_BY_ID = "FindById";
+
+        //tocamelcase needs to have the delimiter used before uppsercase letters, otherwise it will lowercase the letters and we don't want that
+        private static final String FIND_BY_ID = "/Find/By/Id";
         private static final String OPERATION_ID = "operationId";
         Map<String, String> operationIds;
 
@@ -49,10 +51,7 @@ public class InvalidOperationIdName extends OpenApiCheck {
         JsonNode opIdNode = node.propertyMap().get(OPERATION_ID);
         if (opIdNode != null) {
             String nodeOperationId = opIdNode.value().getToken().getValue();
-
-            // strip {path_params} and `/` from path
-            String valueFromPathAndOperationType = operationIds.get(nodeOperationId).replaceAll("\\{(.*?)}", "");//.replace("/", " ")
-            //capitalize words separated by ` ` and trim remaining ' '
+            String valueFromPathAndOperationType = operationIds.get(nodeOperationId).replaceAll("/\\{(.*?)}", "");
             valueFromPathAndOperationType = CaseUtils.toCamelCase(valueFromPathAndOperationType, false, '/');
             if (!nodeOperationId.equals(valueFromPathAndOperationType)) {
                 addIssue(String.format("Found %s: `%s` does not match expected format: `%s`", OPERATION_ID, nodeOperationId, valueFromPathAndOperationType), opIdNode.key());
@@ -84,6 +83,9 @@ public class InvalidOperationIdName extends OpenApiCheck {
                     crudKey = findById ? FIND_BY_ID: crudKey;
                     //add a `/` because we need a token to be able to capitalize crud operation for case sensitivity
                     operationIds.put(operationId, path + "/" + crudKey);
+
+
+
                 }
             }
         }
