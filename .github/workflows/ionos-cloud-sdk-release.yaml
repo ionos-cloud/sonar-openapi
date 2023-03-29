@@ -1,4 +1,4 @@
-name: Ionos Cloud SDK Release
+name: Ionos Cloud Sonar OpenApi Release
 
 on:
   push:
@@ -43,5 +43,5 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "sonar-openapi-plugin/target/sonar-openapi-plugin.jar"
-          name: "${{ env.RELEASE_VERSION }} (Ionos Cloud SDK Release)"
+          name: "${{ env.RELEASE_VERSION }} (Ionos Cloud Sonar OpenApi Release)"
           token: ${{ secrets.GITHUB_TOKEN }}
