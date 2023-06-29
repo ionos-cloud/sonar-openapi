@@ -43,7 +43,7 @@ public class OpenApiPlugin implements Plugin {
         .subCategory(GENERAL)
         .onQualifiers(Qualifiers.PROJECT)
         .multiValues(true)
-        .defaultValue("yaml,json")
+        .defaultValue("yml,json")
         .build(),
       PropertyDefinition.builder(OpenApiProperties.V2_PATH_KEY)
         .index(11)
