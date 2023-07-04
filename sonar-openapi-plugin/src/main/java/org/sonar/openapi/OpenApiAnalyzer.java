@@ -79,11 +79,11 @@ public class OpenApiAnalyzer {
 
   private static NewIssueLocation newLocation(InputFile inputFile, NewIssue issue, IssueLocation location) {
     NewIssueLocation newLocation = issue.newLocation().on(inputFile);
-    if (location.startLine() != IssueLocation.UNDEFINED_LINE) {
+    if (location.startLine() != IssueLocation.UNDEFINED_LINE && !(location.startLine() == location.endLine() && location.startLineOffset() == location.endLineOffset())){
       TextRange range;
       if (location.startLineOffset() == IssueLocation.UNDEFINED_OFFSET) {
         range = inputFile.selectLine(location.startLine());
-      } else {
+      }else {
         range = inputFile.newRange(location.startLine(), location.startLineOffset(), location.endLine(), location.endLineOffset());
       }
       newLocation.at(range);
@@ -106,7 +106,7 @@ public class OpenApiAnalyzer {
   }
 
   private void scanFile(InputFile inputFile) {
-    String codeDefault = null;
+    String codeDefault;
     try {
       codeDefault = Files.readString(inputFile.file().toPath());
       modifyFile(inputFile.file().getAbsolutePath(),codeDefault.replaceAll("(?m)^[ \t]*\r?\n", ""));
