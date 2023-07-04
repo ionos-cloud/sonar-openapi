@@ -25,7 +25,7 @@ import org.sonar.openapi.OpenApiCheckVerifier;
 public class ProvideOpSummaryCheckTest {
   @Test
   public void verify_in_v2() {
-    OpenApiCheckVerifier.verify("src/test/resources/checks/v3/reseller.json", new ParsingErrorCheck(), false);
+    OpenApiCheckVerifier.verify("src/test/resources/checks/v2/provide-summary.yaml", new ProvideOpSummaryCheck(), true);
   }
 
   @Test

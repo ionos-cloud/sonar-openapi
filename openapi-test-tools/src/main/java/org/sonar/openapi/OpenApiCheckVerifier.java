@@ -82,9 +82,6 @@ public class OpenApiCheckVerifier {
     Iterator<PreciseIssue> actualIssues = getActualIssues(file, check, isV2);
     verifier.checkIssues(actualIssues);
 
-//    if (actualIssues.hasNext() && actualIssues.next().primaryLocation().message() != null && actualIssues.next().primaryLocation().message().contains("WARNING Unexpected property")) {
-//      actualIssues.remove();
-//    } else {
     if (actualIssues.hasNext()){
       PreciseIssue issue = actualIssues.next();
       throw new AssertionError("Unexpected issue at line " + line(issue) + ": \"" + issue.primaryLocation().message() + "\" : pointer: " + issue.primaryLocation().pointer());
