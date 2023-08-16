@@ -45,7 +45,7 @@ public class OperationIdDoesNotContainCheck extends OpenApiCheck {
         JsonNode opIdNode = node.propertyMap().get(OPERATION_ID);
 
 
-        if (!opIdNode.isMissing() && !opIdNode.isNull()) {
+        if (opIdNode != null && !opIdNode.isMissing() && !opIdNode.isNull()) {
             String nodeOperationId = opIdNode.value().getToken().getValue();
             if (StringUtils.containsIgnoreCase(nodeOperationId, "post") && StringUtils.containsIgnoreCase(nodeOperationId, "create")) {
                 addIssue(String.format("Found %s: `%s` should not contain both `create` and `post`", OPERATION_ID, nodeOperationId), opIdNode.key());
