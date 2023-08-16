@@ -19,32 +19,12 @@
  */
 package org.sonar.openapi.checks;
 
-import java.util.Arrays;
-import java.util.List;
+import org.junit.Test;
+import org.sonar.openapi.OpenApiCheckVerifier;
 
-public final class CheckList {
-  public static final String REPOSITORY_KEY = "openapi";
-
-  private CheckList() {
-  }
-
-  public static List<Class> getChecks() {
-    return Arrays.asList(
-      PathMaskeradingCheck.class,
-      MediaTypeCheck.class,
-      ParsingErrorCheck.class,
-      DefaultResponseCheck.class,
-      DefinedResponseCheck.class,
-      DeclaredTagCheck.class,
-      DocumentedTagCheck.class,
-      AtMostOneBodyParameterCheck.class,
-      NoUnusedDefinitionCheck.class,
-      NoContentIn204Check.class,
-      ProvideOpSummaryCheck.class,
-      ContactValidEmailCheck.class,
-      DescriptionDiffersSummaryCheck.class,
-      InvalidOperationIdName.class,
-      OperationIdDoesNotContainCheck.class
-    );
-  }
+public class OperationIdDoesNotContainCheckTest {
+    @Test
+    public void detects_operationId_doesnotcontain_v3() {
+        OpenApiCheckVerifier.verify("src/test/resources/checks/v3/doesnotcontain.yaml", new OperationIdDoesNotContainCheck(), false);
+    }
 }

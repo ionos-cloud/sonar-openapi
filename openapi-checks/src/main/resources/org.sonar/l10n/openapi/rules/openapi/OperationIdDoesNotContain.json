@@ -1,10 +1,10 @@
 {
-  "title": "APIs must define `operationId` as specified in the SDK guidelines.",
+  "title": "operationId MUST not contain both post and create, or put and update",
   "type": "BUG",
   "status": "ready",
   "remediation": {
     "func": "Constant\/Issue",
-    "constantCost": "30mn"
+    "constantCost": "10mn"
   },
   "tags": [
     "bad-practice",
@@ -13,5 +13,5 @@
   ],
   "defaultSeverity": "Blocker",
   "ruleSpecification": "https://docs.google.com/document/d/1DZea04mLSH0pqZRrHQxHsOrAxu4J3XfA/edit#heading=h.17dp8vu",
-  "sqKey": "InvalidOperationIdName"
+  "sqKey": "OperationIdDoesNotContain"
 }
