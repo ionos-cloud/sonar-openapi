@@ -22,7 +22,6 @@ package org.sonar.openapi.checks;
 import com.google.common.collect.Sets;
 import com.sonar.sslr.api.AstNodeType;
 import java.util.Set;
-import java.util.List;
 import java.util.Map;
 
 import org.sonar.check.Rule;
