@@ -52,20 +52,32 @@ public class ProvidePropertiesDescriptionCheck extends OpenApiCheck {
   private void visitDefinitionsProperties(JsonNode node) {
 
     for ( Map.Entry<String, JsonNode> definition : node.propertyMap().entrySet()) {
-        JsonNode defContent = definition.getValue();
-        if (defContent.get("properties").isMissing()){
+        JsonNode content = definition.getValue();
+        if (content.get("properties").isMissing()){
             continue;
         }
-      for (Map.Entry<String, JsonNode> property : defContent.get("properties").propertyMap().entrySet()){
-        JsonNode propContent = property.getValue();
-        if (propContent.get("description").isMissing()){
-            addIssue("Provide a description for each property of a definition.", propContent.key());
-        }
-      }
+        CheckPropertiesDescription(content, "definition");
     }
   }
 
   private void visitComponentsProperties(JsonNode node) {
-  }
+    JsonNode schemas = node.get("schemas");
+    for ( Map.Entry<String, JsonNode> schema : schemas.propertyMap().entrySet()) {
+        JsonNode content = schema.getValue();
+        if (content.get("properties").isMissing()){
+            continue;
+        }
+        CheckPropertiesDescription(content, "schema");
+    }
+}
 
+  private void CheckPropertiesDescription(JsonNode node, String entity){
+    JsonNode properties = node.get("properties");
+    for (Map.Entry<String, JsonNode> property : properties.propertyMap().entrySet()){
+        JsonNode propContent = property.getValue();
+        if (propContent.get("description").isMissing()){
+            addIssue(String.format("Provide a description for each property of a %s.", entity), propContent.key());
+        }
+      }
+    }
 }
