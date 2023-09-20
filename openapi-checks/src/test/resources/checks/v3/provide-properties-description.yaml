@@ -1,0 +1,43 @@
+swagger: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /pets:
+    get:
+      responses:
+        '200':
+          description: some operation
+    post:
+      requestBody:
+        description: The modified cluster.
+        content:
+          application/json:
+            schema:
+              $ref: '#/someSchema'
+        required: true
+      responses:
+        default:
+          description: the default response
+components:
+  schemas:
+    FirstComponentSchema:
+      type: object,
+      properties:
+        firstProperty:                # Noncompliant {{Provide a description for each property of a schema.}}
+          type: string
+          example: example1
+        secondProperty:
+          type: string
+          example: example2
+          description: description2
+    SecondComponentSchema:
+      type: object,
+      properties:
+        firstProperty:
+          type: string
+          example: example1
+          description: description1
+        secondProperty:                 # Noncompliant {{Provide a description for each property of a schema.}}
+          type: string
+          example: example2
