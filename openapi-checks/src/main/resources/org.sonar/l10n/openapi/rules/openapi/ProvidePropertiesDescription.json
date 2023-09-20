@@ -9,7 +9,7 @@
     "tags": [
       "must"
     ],
-    "defaultSeverity": "Blocker",
+    "defaultSeverity": "Minor",
     "sqKey": "ProvidePropertiesDescription"
   }
   
