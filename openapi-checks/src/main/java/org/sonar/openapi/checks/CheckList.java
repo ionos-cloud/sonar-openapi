@@ -45,6 +45,7 @@ public final class CheckList {
       DescriptionDiffersSummaryCheck.class,
       InvalidOperationIdName.class,
       ProvideRequestBodyDescriptionCheck.class,
+      ProvidePropertiesDescriptionCheck.class,
       PathQueryParametersCheck.class
     );
   }
