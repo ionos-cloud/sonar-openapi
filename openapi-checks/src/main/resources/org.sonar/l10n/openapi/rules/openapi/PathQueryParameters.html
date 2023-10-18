@@ -1,0 +1,24 @@
+<p>Query parameters should not be included in the paths of the OpenAPI specification. They have to be declared explicitly in the path object's definition.
+</p>
+    
+    <h2>Noncompliant Query String Path Example</h2>
+    <pre>
+    /path/with/query/?firstParameter&secondParameter
+    </pre>
+    
+    <h2>Compliant Solution</h2>
+    <p>Any query parameter description should be removed from the path itself and defined in the 'parameters' block of the endpoint.</p>
+    <pre>
+    /path/with/query/parameters:
+        parameters:
+            - in: query
+              name: firstParameter
+              schema:
+                type: integer
+              description: First parameter of the query parameters list
+            - in: query
+              name: secondParameter
+              schema:
+                type: integer
+              description: Second parameter of the query parameters list
+    </pre>
