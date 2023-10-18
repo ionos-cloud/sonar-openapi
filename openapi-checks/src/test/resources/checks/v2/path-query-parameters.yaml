@@ -1,0 +1,18 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /path/with/query/parameters:
+    parameters:
+        - in: query
+          name: firstParameter
+          schema:
+            type: integer
+          description: First parameter of the query parameters list
+        - in: query
+          name: secondParameter
+          schema:
+            type: integer
+          description: Second parameter of the query parameters list
+  /path/with/query/?firstParameter&secondParameter: {} # Noncompliant: Path should not include query parameters.
