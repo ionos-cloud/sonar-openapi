@@ -1,0 +1,20 @@
+<p>Paths defined in the OpenAPI specification should not use special characters since they get transformed into bad function names, depending on
+    the code generating tool which is used.
+</p>
+    
+    <h2>Noncompliant Code Example</h2>
+    <p>
+       Avoid using special characters in naming individual path elements, such as the ones used in snake case.
+    </p>
+    <pre>
+    /contracts/{contract_number}/quotas
+    /administration/token/dsaas-gateway/generate
+    </pre>
+    
+    <h2>Compliant Solution</h2>
+    
+    <p>Use camelCase when naming path elements</p>
+    <pre>
+    /contracts/{contractNumber}/quotas
+    /administration/token/dsaasGateway/generate
+    </pre>
