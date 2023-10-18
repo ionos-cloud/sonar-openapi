@@ -53,7 +53,7 @@ public class ProvideRequestBodyDescriptionCheck extends OpenApiCheck {
     }
     JsonNode description = requestBody.get("description");
     if (description.isMissing()) {
-      addIssue("Provide a description for each request body.", node.key());
+      addIssue("Provide a description for each request body.", requestBody.key());
     }
   }
 

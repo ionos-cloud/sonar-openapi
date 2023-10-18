@@ -20,7 +20,7 @@ paths:
         default:
           description: the default response
     put:
-      requestBody:        # Noncompliant {{Provide a description for each request body}}
+      requestBody:  # Noncompliant Provide a description for each request body.
         content:
           application/json:
             schema:
