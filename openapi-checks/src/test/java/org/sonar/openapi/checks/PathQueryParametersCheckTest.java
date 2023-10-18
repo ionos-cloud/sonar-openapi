@@ -19,34 +19,33 @@
  */
 package org.sonar.openapi.checks;
 
-import java.util.Arrays;
-import java.util.List;
+import org.junit.Test;
+import org.sonar.openapi.OpenApiCheckVerifier;
 
-public final class CheckList {
-  public static final String REPOSITORY_KEY = "openapi";
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
-  private CheckList() {
+import static org.sonar.openapi.checks.PathQueryParametersCheck.hasQueryParams;
+
+public class PathQueryParametersCheckTest {
+
+
+  @Test
+  public void verify_path_string() {
+    assertTrue(hasQueryParams("/path/with/query?param"));
+    assertTrue(hasQueryParams("/query?param"));
+
+    assertFalse(hasQueryParams("/invalid/character?/path"));
   }
 
-  public static List<Class> getChecks() {
-    return Arrays.asList(
-      PathMaskeradingCheck.class,
-      MediaTypeCheck.class,
-      ParsingErrorCheck.class,
-      DefaultResponseCheck.class,
-      DefinedResponseCheck.class,
-      DeclaredTagCheck.class,
-      DocumentedTagCheck.class,
-      AtMostOneBodyParameterCheck.class,
-      NoUnusedDefinitionCheck.class,
-      NoContentIn204Check.class,
-      ProvideOpSummaryCheck.class,
-      ContactValidEmailCheck.class,
-      DescriptionDiffersSummaryCheck.class,
-      InvalidOperationIdName.class,
-      ProvideRequestBodyDescriptionCheck.class,
-      ProvidePropertiesDescriptionCheck.class,
-      PathQueryParametersCheck.class
-    );
+  @Test
+  public void verify_path_valid_characters_v2() {
+    OpenApiCheckVerifier.verify("src/test/resources/checks/v2/path-query-parameters.yaml", new PathQueryParametersCheck(), true);
   }
+
+    @Test
+  public void verify_path_valid_characters_v3() {
+    OpenApiCheckVerifier.verify("src/test/resources/checks/v3/path-query-parameters.yaml", new PathQueryParametersCheck(), false);
+  }
+
 }
