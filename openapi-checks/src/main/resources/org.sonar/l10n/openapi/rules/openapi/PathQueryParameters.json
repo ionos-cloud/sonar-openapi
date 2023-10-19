@@ -1,0 +1,14 @@
+{
+    "title": "Path should not include query parameters.",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "2mn"
+    },
+    "tags": [
+      "must"
+    ],
+    "defaultSeverity": "Blocker",
+    "sqKey": "PathQueryParameters"
+}

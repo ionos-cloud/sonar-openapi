@@ -19,49 +19,50 @@
  */
 package org.sonar.openapi.checks;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Sets;
 import com.sonar.sslr.api.AstNodeType;
 import java.util.Set;
+import java.util.Collection;
+
 import org.sonar.check.Rule;
 import org.sonar.plugins.openapi.api.OpenApiCheck;
 import org.sonar.plugins.openapi.api.v2.OpenApi2Grammar;
 import org.sonar.plugins.openapi.api.v3.OpenApi3Grammar;
 import org.sonar.sslr.yaml.grammar.JsonNode;
+import static org.sonar.openapi.checks.PathMaskeradingCheck.split;
 
-@Rule(key = ProvideRequestBodyDescriptionCheck.CHECK_KEY)
-public class ProvideRequestBodyDescriptionCheck extends OpenApiCheck {
-  public static final String CHECK_KEY = "ProvideRequestBodyDescription";
+@Rule(key = PathQueryParametersCheck.CHECK_KEY)
+public class PathQueryParametersCheck extends OpenApiCheck {
+  public static final String CHECK_KEY = "PathQueryParameters";
 
   @Override
   public Set<AstNodeType> subscribedKinds() {
-    return Sets.newHashSet(OpenApi2Grammar.OPERATION, OpenApi3Grammar.REQUEST_BODY);
+    return Sets.newHashSet(OpenApi2Grammar.PATHS, OpenApi3Grammar.PATHS);
   }
 
   @Override
   protected void visitNode(JsonNode node) {
-    if (node.getType() == OpenApi3Grammar.REQUEST_BODY) {
-      visitOpenApi3(node);
-    } else {
-      visitOpenApi2(node);
+    Collection<JsonNode> paths = node.propertyMap().values();
+    checkPathCharacters(paths);
+  }
+
+  private void checkPathCharacters(Collection<JsonNode> paths){
+    for (JsonNode p : paths) {
+        String path = p.key().getTokenValue();
+        if (hasQueryParams(path)){
+            addIssue("Path should not include query parameters.", p.key());
+        }
     }
   }
 
-  private void visitOpenApi2(JsonNode node) {
-    JsonNode requestBody = node.get("requestBody");
-    if (requestBody.isMissing()){
-      return;
+  @VisibleForTesting
+  static boolean hasQueryParams(String path){
+    String[] splitPath = split(path);
+    if (splitPath[splitPath.length - 1].contains("?")){
+        return true;
     }
-    JsonNode description = requestBody.get("description");
-    if (description.isMissing()) {
-      addIssue("Provide a description for each request body.", requestBody.key());
-    }
-  }
-
-  private void visitOpenApi3(JsonNode node) {
-    JsonNode description = node.get("description");
-    if (description.isMissing()) {
-      addIssue("Provide a description for each request body.", node.key());
-    }
+    return false;
   }
 
 }

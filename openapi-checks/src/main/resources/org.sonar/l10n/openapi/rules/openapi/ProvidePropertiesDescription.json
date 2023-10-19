@@ -1,5 +1,5 @@
 {
-    "title": "Provide a description for each request body.",
+    "title": "Provide a description for each property",
     "type": "CODE_SMELL",
     "status": "ready",
     "remediation": {
@@ -10,6 +10,6 @@
       "must"
     ],
     "defaultSeverity": "Minor",
-    "sqKey": "ProvideRequestBodyDescription"
+    "sqKey": "ProvidePropertiesDescription"
   }
   
