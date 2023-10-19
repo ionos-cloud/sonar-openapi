@@ -1,0 +1,15 @@
+{
+    "title": "Path should not contain special characters.",
+    "type": "BUG",
+    "status": "ready",
+    "remediation": {
+      "func": "Constant\/Issue",
+      "constantCost": "2mn"
+    },
+    "tags": [
+      "must"
+    ],
+    "defaultSeverity": "Blocker",
+    "sqKey": "PathValidCharacters"
+  }
+  

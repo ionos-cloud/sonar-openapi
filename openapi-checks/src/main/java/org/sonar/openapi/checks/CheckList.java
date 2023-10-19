@@ -46,6 +46,7 @@ public final class CheckList {
       InvalidOperationIdName.class,
       ProvideRequestBodyDescriptionCheck.class,
       ProvidePropertiesDescriptionCheck.class,
+      PathValidCharactersCheck.class,
       PathQueryParametersCheck.class
     );
   }

@@ -1,0 +1,9 @@
+swagger: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+paths:
+  /valid/path: {}
+  /valid/path/with/{parameter}: {}
+  /invalid_path: {} # Noncompliant: Path should not contain special characters.
+  /invalid/path_with/{parameter}: {} # Noncompliant: Path should not contain special characters.
