@@ -44,6 +44,10 @@ public final class CheckList {
       ContactValidEmailCheck.class,
       DescriptionDiffersSummaryCheck.class,
       InvalidOperationIdName.class,
+      ProvideRequestBodyDescriptionCheck.class,
+      ProvidePropertiesDescriptionCheck.class,
+      PathValidCharactersCheck.class,
+      PathQueryParametersCheck.class
       OperationIdDoesNotContainCheck.class
     );
   }

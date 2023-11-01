@@ -1,0 +1,84 @@
+<p>Provide a description for each property of a definition or schema. The OpenAPI contract is a way to convey meaning to non-technical users. The
+    summary will help those populations understand what the operation is about, instead of approaching it in technical terms.
+    </p>
+    
+    <h2>Noncompliant Code Example (OpenAPI 2)</h2>
+    <pre>
+    swagger: "2.0"
+    info:
+      version: 1.0.0
+      title: Swagger Petstore
+    paths:
+      /pets:
+        get:
+          responses:
+            '200':
+              description: some operation
+        post:
+          requestBody:
+            description: The modified cluster.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/definitions/someSchemaPost'
+            required: true
+          responses:
+            default:
+              description: the default response
+        put:
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  $ref: '#/definitions/someSchemaPut'
+            required: true
+    definitions:
+        someSchemaPost:
+            type: object,
+            properties:
+                someProperty:                  # Noncompliant {{Provide a description for each property of a definition}}
+                    type: string
+                    example: "example"
+                    readonly: true
+    </pre>
+
+    <h2>Compliant Solution (OpenAPI 2)</h2>
+    <pre>
+        swagger: "2.0"
+        info:
+          version: 1.0.0
+          title: Swagger Petstore
+        paths:
+          /pets:
+            get:
+              responses:
+                '200':
+                  description: some operation
+            post:
+              requestBody:
+                description: The modified cluster.
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/definitions/someSchemaPost'
+                required: true
+              responses:
+                default:
+                  description: the default response
+            put:
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/definitions/someSchemaPut'
+                required: true
+        definitions:
+            someSchemaPost:
+                type: object,
+                properties:
+                    someProperty:
+                        type: string
+                        example: "example"
+                        readonly: true
+                        description: "Description of someProperty"
+        </pre>
