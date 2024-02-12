@@ -74,7 +74,8 @@ public class ProvidePropertiesDescriptionCheck extends OpenApiCheck {
     JsonNode properties = node.get("properties");
     for (Map.Entry<String, JsonNode> property : properties.propertyMap().entrySet()){
         JsonNode propContent = property.getValue();
-        if (propContent.get("description").isMissing()){
+        // If the property is a reference, we don't need to check the description
+        if (propContent.get("$ref").isMissing() && propContent.get("description").isMissing()){
             addIssue(String.format("Provide a description for each property of a %s.", entity), propContent.key());
         }
       }
