@@ -33,4 +33,9 @@ public class ProvidePropertiesDescriptionCheckTest {
   public void verify_in_v3() {
     OpenApiCheckVerifier.verify("src/test/resources/checks/v3/provide-properties-description.yaml", new ProvidePropertiesDescriptionCheck(), false);
   }
+
+  @Test
+  public void verify_in_v3_with_ref() {
+    OpenApiCheckVerifier.verify("src/test/resources/checks/v3/provide-properties-description-with-ref.yaml", new ProvidePropertiesDescriptionCheck(), false);
+  }
 }
