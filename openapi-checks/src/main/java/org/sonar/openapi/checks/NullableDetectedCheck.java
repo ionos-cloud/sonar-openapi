@@ -18,7 +18,7 @@ public class NullableDetectedCheck extends OpenApiCheck {
 
     @Override
     public Set<AstNodeType> subscribedKinds() {
-        return Sets.newHashSet(OpenApi3Grammar.SCHEMA_PROPERTIES );//OpenApi3Grammar.SCHEMA_PROPERTIES
+        return Sets.newHashSet(OpenApi3Grammar.SCHEMA_PROPERTIES );
     }
     @Override
     public void visitToken(Token token) {
