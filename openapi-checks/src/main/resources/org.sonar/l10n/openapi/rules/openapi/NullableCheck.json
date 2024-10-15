@@ -1,0 +1,17 @@
+{
+  "title": "nullable fields are discouraged unless necessary for backward compatibility purposes",
+  "type": "BUG",
+  "status": "ready",
+  "remediation": {
+    "func": "Constant\/Issue",
+    "constantCost": "10mn"
+  },
+  "tags": [
+    "bad-practice",
+    "ease-of-use",
+    "should"
+  ],
+  "defaultSeverity": "Major",
+  "ruleSpecification": "https://docs.google.com/document/d/1DZea04mLSH0pqZRrHQxHsOrAxu4J3XfA/edit#heading=h.17dp8vu",
+  "sqKey": "NullableDetected"
+}
