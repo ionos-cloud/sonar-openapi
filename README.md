@@ -6,7 +6,7 @@ SonarOpenApi is a code analyzer for OpenAPI specifications.
 
 [![Build Status](https://api.travis-ci.org/societe-generale/sonar-openapi.svg)](https://travis-ci.org/societe-generale/sonar-openapi)
 
-## Features
+## Features 
 
 * Full compatibility with OpenAPI v2.0, v3.0.0 and v3.0.1
 * 9 generic rules (pending more checks for OpenAPI conformity)
