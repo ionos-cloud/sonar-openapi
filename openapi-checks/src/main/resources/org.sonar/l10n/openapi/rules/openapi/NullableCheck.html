@@ -1,0 +1,18 @@
+<p>Using `nullable` for a field will generate more complex code at least for golang where it is more difficult to check if a field is unset or null. If the field does not have
+    a special behaviour for the null value, it is useless to specify that it is nullable and will also lead to more complex generated code. If the field has special behaviour for null, it would be better to
+    have a predefined special value for that field, although that has its own pitfalls</p>
+<h2>Non-compliant Code Example</h2>
+<pre>
+         firstProperty:
+          type: string
+          example: example
+          description: description
+          nullable: false
+</pre>
+<h2>Compliant Solution</h2>
+<pre>
+         firstProperty:
+          type: int
+          example: example
+          description: description
+</pre>

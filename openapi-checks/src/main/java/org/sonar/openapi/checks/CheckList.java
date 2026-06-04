@@ -48,7 +48,8 @@ public final class CheckList {
       ProvidePropertiesDescriptionCheck.class,
       PathValidCharactersCheck.class,
       PathQueryParametersCheck.class,
-      OperationIdDoesNotContainCheck.class
+      OperationIdDoesNotContainCheck.class,
+      NullableDetectedCheck.class
     );
   }
 }
